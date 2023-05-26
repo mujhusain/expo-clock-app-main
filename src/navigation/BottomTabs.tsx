@@ -7,6 +7,7 @@ import StopWatch from "screens/StopWatch";
 import Settings from "src/screens/Settings";
 
 import { useThemeColors } from "hooks/useThemeColors";
+import Home from "src/screens/Home";
 
 type TabBarIconProps = {
   color: string;
@@ -19,6 +20,7 @@ const TabBarIcon = ({ color, size, name }: TabBarIconProps) => (
 );
 
 type BottomTabsParamList = {
+  Home: undefined;
   WorldClock: undefined;
   Alarm: undefined;
   StopWatch: undefined;
@@ -32,7 +34,7 @@ const BottomTabs = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="StopWatch"
+      initialRouteName="Home"
       screenOptions={{
         tabBarInactiveTintColor: colors.tabBarInactive,
         tabBarActiveTintColor: colors.tabBarActive,
@@ -54,6 +56,14 @@ const BottomTabs = () => {
           tabBarIcon: (props) => <TabBarIcon name="alarm" {...props} />,
         }}
       />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: "Welcome",
+            tabBarIcon: (props) => <TabBarIcon name="home" {...props} />,
+          }}
+        />
       <Tab.Screen
         name="StopWatch"
         component={StopWatch}
