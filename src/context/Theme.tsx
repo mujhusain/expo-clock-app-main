@@ -3,8 +3,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useColorScheme } from "hooks/useColorScheme";
 
-export const Themes: ITheme[] = ["light", "dark", "forest"];
-export type ITheme = "light" | "dark" | "forest";
+export const Themes: ITheme[] = ["light", "dark"];
+export type ITheme = "light" | "dark";
 
 type IThemeContext = {
   theme: ITheme;
@@ -53,7 +53,7 @@ export const useCustomTheme = () => {
 
   let isDark = false;
 
-  if (context.theme && ["dark", "forest"].includes(context.theme)) {
+  if (context.theme && ["dark"].includes(context.theme)) {
     isDark = true;
   }
 

@@ -1,63 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ScrollView,
   StyleSheet,
-  ViewStyle,
-  TouchableOpacity,
+  Switch,
 } from "react-native";
 
 import { View, Text } from "components/themed";
 import { useThemeColors } from "hooks/useThemeColors";
 import { useCustomTheme, Themes } from "context/Theme";
 
-const Border = () => {
-  const { colors } = useThemeColors();
-
-  return <View style={[styles.border, { backgroundColor: colors.border }]} />;
-};
-
-type ThemeRowProps = {
-  children: string;
-  checked?: boolean;
-  onPress: () => void;
-};
-
-const ThemeRow = ({ children, checked, onPress }: ThemeRowProps) => {
-  const { colors } = useThemeColors();
-
-  const checkedStyle: ViewStyle[] = [
-    styles.checkbox,
-    { borderColor: colors.text },
-  ];
-
-  if (checked) {
-    checkedStyle.push({
-      borderColor: colors.textGreen,
-      backgroundColor: colors.textGreen,
-    });
-  }
-
-  return (
-    <TouchableOpacity style={styles.row} onPress={onPress}>
-      <View style={checkedStyle} />
-      <Text style={styles.text}>{children}</Text>
-    </TouchableOpacity>
-  );
-};
 
 export default () => {
+  const { colors } = useThemeColors();
   const { theme, setTheme } = useCustomTheme();
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => {
+    setTheme(isEnabled ? "light" : "dark");
+
+    setIsEnabled((previousState) => !previousState);
+  };
 
   return (
     <ScrollView style={styles.container}>
-      {Themes.map((key, index) => (
-        <React.Fragment key={key}>
-          <ThemeRow onPress={() => setTheme(key)} checked={theme === key}>
-            {key}
-          </ThemeRow>
-          {index !== Themes.length - 1 && <Border />}
-        </React.Fragment>
-      ))}
+      <View style={styles.row}>
+        <Text style={styles.text}> Switch to {theme==='dark'?"Light":"Dark"} mode</Text>
+
+        <Switch
+          trackColor={{ false: "#767577", true: "white" }}
+          thumbColor={isEnabled ? "#f5dd4b" : "#011627"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -75,18 +50,13 @@ const styles = StyleSheet.create({
 
   row: {
     flexDirection: "row",
-    paddingVertical: 10,
     marginVertical: 10,
     alignItems: "center",
+    justifyContent:"space-between",
+    borderRadius:10,
   },
   text: {
     fontSize: 20,
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderRadius: 20,
-    borderWidth: 1,
-    marginRight: 10,
+    fontVariant: ["tabular-nums"],
   },
 });
