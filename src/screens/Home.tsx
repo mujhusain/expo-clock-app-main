@@ -44,9 +44,9 @@ export default () => {
 
   return (
     <View style={styles.container}>
+      <AnalogClock />
       <Text style={[styles.text, { color: colors.textSubtle }]}>India</Text>
       <Text style={styles.timeText}>{currentTime}</Text>
-      <AnalogClock />
       <Button
         title={is24HourFormat ? "Switch to 12-hour" : "Switch to 24-hour"}
         onPress={toggleTimeFormat}

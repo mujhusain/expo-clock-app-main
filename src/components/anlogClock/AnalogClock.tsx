@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions } from "react-native";
 import { View } from "components/themed";
 
 import React, { useState, useEffect } from "react";
-import { Svg, Line, Circle, Text } from "react-native-svg";
+import { Svg, Line, Circle, Text} from "react-native-svg";
 import { useThemeColors } from "hooks/useThemeColors";
 
 export default () => {
@@ -18,7 +18,7 @@ export default () => {
   }, []);
 
   let { width } = Dimensions.get("window");
-  width = width > 500 ? 500 : width-150;
+  width = width > 500 ? 500 : width - 150;
 
   const clockRadius = width / 2;
   const clockCenter = width / 2;
@@ -33,31 +33,31 @@ export default () => {
 
   return (
     <View style={styles.container}>
-      <Svg height={width} width={width}>
+      <Svg height={width+10} width={width+10}>
         <Circle
           cx={clockCenter}
           cy={clockCenter}
           r={clockRadius}
-          stroke="black"
-          strokeWidth="2"
-          fill={isDark?"white":"black"}
+          stroke={isDark? "white":"black"}
+          strokeWidth="1"
+          fill={isDark ? colors.background : "white"}
         />
-
+      <Circle  cx={clockCenter} cy={clockCenter} r="8" fill={isDark?"white":"black"} />
         {[...Array(12)].map((_, i) => (
           <Text
-            key={i}
+          key={i}
             x={
               clockCenter +
-              (clockRadius - 30) *
+              (clockRadius - 20) *
                 Math.cos(Math.PI / 2 - (i + 1) * (30 * (Math.PI / 180)))
             }
             y={
               clockCenter -
-              (clockRadius - 30) *
+              (clockRadius - 20) *
                 Math.sin(Math.PI / 2 - (i + 1) * (30 * (Math.PI / 180)))
             }
             fontSize="20"
-            stroke={!isDark?"white":"black"}
+            stroke={isDark ? "white" : "black"}
             textAnchor="middle"
             alignmentBaseline="middle"
           >
@@ -78,7 +78,7 @@ export default () => {
             (clockRadius - 50) *
               Math.sin(Math.PI / 2 - hourHandDegrees * (Math.PI / 180))
           }
-          stroke={!isDark?"white":"black"}
+          stroke={isDark ? "white" : "black"}
           strokeWidth="6"
         />
 
@@ -95,7 +95,7 @@ export default () => {
             (clockRadius - 30) *
               Math.sin(Math.PI / 2 - minuteHandDegrees * (Math.PI / 180))
           }
-          stroke={!isDark?"white":"black"}
+          stroke={isDark ? "white" : "black"}
           strokeWidth="4"
         />
 
@@ -122,7 +122,6 @@ export default () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
