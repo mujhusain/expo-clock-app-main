@@ -7,21 +7,10 @@ The primary goal of this app is to serve as an example of how to build a multi-t
 Features include:
 
 - A functioning stop watch with lap tracking
+- Analog Clock 
+- 24H and 12H Time format
 - Use system preferred color scheme
-- User customizable theme with memory of preference between sessions
 - Themed React Navigation v6
-
-### iOS
-
-![iOS Example](./assets/ios.png)
-
-### Android
-
-![Android Example](./assets/android.png)
-
-### Web
-
-![Web Example](./assets/web.png)
 
 ## Install
 
