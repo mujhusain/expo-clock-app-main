@@ -38,11 +38,11 @@ export default () => {
           cx={clockCenter}
           cy={clockCenter}
           r={clockRadius}
-          stroke="black"
-          strokeWidth="2"
-          fill={isDark ? "white" : "black"}
+          stroke={isDark? "white":"black"}
+          strokeWidth="1"
+          fill={isDark ? colors.background : "white"}
         />
-      <Circle  cx={clockCenter} cy={clockCenter} r="8" fill={isDark?"black":"white"} />
+      <Circle  cx={clockCenter} cy={clockCenter} r="8" fill={isDark?"white":"black"} />
         {[...Array(12)].map((_, i) => (
           <Text
           key={i}
@@ -57,7 +57,7 @@ export default () => {
                 Math.sin(Math.PI / 2 - (i + 1) * (30 * (Math.PI / 180)))
             }
             fontSize="20"
-            stroke={isDark ? "black" : "white"}
+            stroke={isDark ? "white" : "black"}
             textAnchor="middle"
             alignmentBaseline="middle"
           >
@@ -78,7 +78,7 @@ export default () => {
             (clockRadius - 50) *
               Math.sin(Math.PI / 2 - hourHandDegrees * (Math.PI / 180))
           }
-          stroke={isDark ? "black" : "white"}
+          stroke={isDark ? "white" : "black"}
           strokeWidth="6"
         />
 
@@ -95,7 +95,7 @@ export default () => {
             (clockRadius - 30) *
               Math.sin(Math.PI / 2 - minuteHandDegrees * (Math.PI / 180))
           }
-          stroke={isDark ? "black" : "white"}
+          stroke={isDark ? "white" : "black"}
           strokeWidth="4"
         />
 
